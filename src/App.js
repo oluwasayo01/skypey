@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from './components/sidebar/Sidebar'
+import Main from './components/main/Main'
+import store from './components/store'
+import _ from 'lodash'
+import { ThemeProvider } from 'styled-components'
 
 function App() {
+  const { contacts } = store.getState()
+  const theme = {color: "white"}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Sidebar contacts={_.values(contacts)}/>
+        <Main/>
+      </div>
+    </ThemeProvider>
   );
 }
 
